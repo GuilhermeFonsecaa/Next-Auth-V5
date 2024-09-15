@@ -6,3 +6,5 @@ export const loginSchema = z.object({
     email: z.string({ required_error: "Email é obrigatório" }).email("Email inválido").min(1, "Email é obrigatório"),
     password: z.string({ required_error: "Senha é obrigatória" }).regex(passwordRegex, "A senha deve conter pelo menos 8 caracteres, incluindo uma letra maiúscula, uma letra minúscula, um número e um caractere especial")
 })
+
+export type loginSchemaType = z.infer<typeof loginSchema>;

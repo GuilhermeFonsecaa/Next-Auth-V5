@@ -1,11 +1,8 @@
-const AuthLayout = () => ({
+const AuthLayout = ({
     children,
-}: Readonly<{
+  }: Readonly<{
     children: React.ReactNode;
-}>) => {
-    return (
-        <div className="container">{children}</div>
-    );
-}
-
-export default AuthLayout;
+  }>) => {
+    return <div className="grid place-items-center min-h-screen">{children}</div>;
+  };
+  export default AuthLayout;
