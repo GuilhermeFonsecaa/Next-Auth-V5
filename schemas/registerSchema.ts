@@ -7,3 +7,5 @@ export const registerSchema = z.object({
     email: z.string({ required_error: "Email é obrigatório" }).email("Email inválido"),
     password: z.string({ required_error: "Senha é obrigatória" }).regex(passwordRegex, "A senha deve conter pelo menos 8 caracteres, incluindo uma letra maiúscula, uma letra minúscula, um número e um caractere especial")
 })
+
+export type registerSchemaType = z.infer<typeof registerSchema>;
