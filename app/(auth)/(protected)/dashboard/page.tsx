@@ -1,3 +1,4 @@
+import LogoutButton from "@/app/components/logout-button";
 import { auth } from "@/auth";
 
 export default async function DashboardPage() {
@@ -10,6 +11,7 @@ export default async function DashboardPage() {
     return (
         <div className="container">
             <pre>{JSON.stringify(session, null, 2)}</pre>
+            <LogoutButton />
         </div>
     )
 }
