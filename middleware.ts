@@ -10,9 +10,15 @@ const publicRoutes = [
     "api/auth/verify-email",
 ]
 
+const apiAuthPrefix = "/api/auth";
+
 export default middleware((req) => {
     const { nextUrl, auth } = req;
     const isLoggedIn = !!auth?.user;
+
+    if (nextUrl.pathname.startsWith(apiAuthPrefix)) {
+        return NextResponse.next();
+      }
 
     if (!publicRoutes.includes(nextUrl.pathname) && !isLoggedIn) {
         return NextResponse.redirect(new URL("/login", nextUrl));
