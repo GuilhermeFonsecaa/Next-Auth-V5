@@ -11,11 +11,11 @@ import { loginAction } from "@/actions/auth-actions";
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 
-const FormLogin = () => {
+const FormLogin = ({ isVerified }: { isVerified: boolean }) => {
     const [isPending, startTransition] = useTransition();
     const [error, setError] = useState<string | null>(null);
     const router = useRouter();
-
+    
     const form = useForm<loginSchemaType>({
         resolver: zodResolver(loginSchema),
         defaultValues: {
@@ -39,7 +39,15 @@ const FormLogin = () => {
 
     return (
         <div className="max-w-96 border px-12 py-14 border-gray-400 shadow-md rounded-md">
-          <h1 className="mb-5 font-bold">Login</h1>
+            <h1 className="font-bold">Login</h1>
+            {
+                isVerified && (
+                    <p className="text-center py-4 text-green-500 text-sm">
+                        Email verificado, agora faça seu login
+                    </p>
+
+                )
+            }
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                     <FormField control={form.control} name="email" render={({ field }) => (
